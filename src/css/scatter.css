@@ -1,0 +1,45 @@
+.controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    /* let items wrap on small screens */
+    margin-bottom: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    /* label above select */
+    flex: 1 1 200px;
+    /* responsive width */
+    min-width: 180px;
+}
+
+.field label {
+    margin-bottom: 0.25rem;
+    font-family: Jost, sans-serif;
+}
+
+/* Make selects easy to tap on mobile */
+.select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    /* prevents iOS zoom on focus */
+    line-height: 1.2;
+    min-height: 40px;
+}
+
+/* Extra comfy on narrow screens */
+@media (max-width: 640px) {
+    .controls {
+        gap: 0.75rem;
+    }
+
+    .field {
+        flex: 1 1 100%;
+    }
+
+    /* stack full-width */
+}
