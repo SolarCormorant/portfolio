@@ -1,0 +1,8 @@
+{
+  "label": "Stair",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "docs/stair/intro.md    "
+  }
+}

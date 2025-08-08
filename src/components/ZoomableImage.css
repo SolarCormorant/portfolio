@@ -1,0 +1,15 @@
+.zoomable {
+    width: 100%;
+    max-width: none;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+.zoomed {
+    transform: scale(2);
+    z-index: 10;
+    cursor: zoom-out;
+    transition: transform 0.3s ease;
+    image-rendering: crisp-edges;
+        /* özellikle yazılar için */
+}   

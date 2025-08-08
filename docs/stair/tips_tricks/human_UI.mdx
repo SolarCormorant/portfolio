@@ -1,0 +1,18 @@
+---
+id: human_ui
+title: Human UI
+---
+
+import ZoomableImage from '@site/src/components/ZoomableImage';
+
+## Human UI Slider Creation
+
+- Instead of creating a separate slider component for each of the approximately 100 UI sliders, sliders are grouped based on the expander they belong to. These groups are referenced and sorted using a central name list to maintain consistency and reduce redundancy.
+- If a name in the list doesn't match any slider, an empty data tree branch is created. This branch can then be populated by another input type, such as a dropdown, allowing flexible input handling without breaking the data structure.
+
+<ZoomableImage src="/img/human_UI/human_slider.png" alt="Human UI" />
+
+## Human UI Expander Save State
+- Human UI’s expander elements are not compatible with save states by default. However, the sliders are compatible and expanders can be controlled by sliders.
+- To work around this limitation, a hidden slider is assigned to each expander. This slider's value is saved with the UI state and used to determine whether the corresponding expander should be open or closed when the session is restored.
+
