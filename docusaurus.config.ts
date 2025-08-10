@@ -119,7 +119,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'About Me',
               to: '/docs/thesis/thesis.mdx',
             },
           ],
