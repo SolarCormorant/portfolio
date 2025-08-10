@@ -5,21 +5,29 @@ sidebar_position: 2
 
 ---
 
--  Üst pay
--  Alt Pay
--  Support Thickness
--  Top Rebuild Degree
--  Top Rebuild No
--  Bottom Rebuild Degree
--  Bottom Rebuild No
+import VideoPlayer from '@site/src/components/VideoPlayer';
+
+
+-  **Top Offset:**
+-  **Bottom Offset:**
+- **Zigzag Front Offset:**
+-  **Zigzag Back Offset:**
+-  **Support Thickness:**
+
+<VideoPlayer src="/video/stair/beam_properties.mp4" />
+
 
 ## Rebuild Curve
 
 - Top and bottom curves can be redrawn with adjustable degrees and point counts, allowing for both flexible and rigid configurations.
 - This provides more control over the overall stair geometry and greater freedom to explore shape variations that best fit the design context.
 
+<VideoPlayer src="/video/stair/rebuild_curve.mp4" />
 
 
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
+## Move Start and End Points
+
+- Top and bottom curves can be redrawn with adjustable degrees and point counts, allowing for both flexible and rigid configurations.
+- This provides more control over the overall stair geometry and greater freedom to explore shape variations that best fit the design context.
+
+<VideoPlayer src="/video/stair/move_end_points.mp4" />

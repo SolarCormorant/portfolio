@@ -84,6 +84,7 @@ const config: Config = {
           sidebarId: 'staircase',
           position: 'left',
           label: 'Staircase Algorithm',
+          to: '/docs/intro_folder/stair_intro',
         },
         {
           type: 'docSidebar',
