@@ -19,6 +19,7 @@
     "@docusaurus/preset-classic": "3.8.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
+    "latex.js": "^0.12.6",
     "plotly.js": "^3.1.0",
     "plotly.js-dist": "^3.1.0",
     "prism-react-renderer": "^2.3.0",

@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Solars Palace',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -76,9 +76,16 @@ const config: Config = {
       title: 'My Portfolio',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/favicon.png',
       },
       items: [
+                {
+          type: 'docSidebar',
+          sidebarId: 'about_me',
+          position: 'left',
+          label: 'About Me',
+        },
+
         {
           type: 'docSidebar',
           sidebarId: 'staircase',
