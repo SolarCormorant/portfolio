@@ -2,6 +2,8 @@
 id: stair_types
 title: Stair Geometry
 sidebar_position: 0
+custom_edit_url: null
+
 ---
 
 import VideoPlayer from '@site/src/components/VideoPlayer';
@@ -38,18 +40,7 @@ Some stair types are restricted based on the number of arms:
 
 - Each arm can be converted into a landing by toggling its corresponding control in the UI.
 
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
-
-
-### Type 1 Convert Landing to Arm
-
-- Each landing can be turned to a arm by clicking on the respective landing toggle on the UI
-
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
+<VideoPlayer src="/video/stair/arm_to_landing.mp4" />
 
 
 ### Type 2 & Type 3 Convert Steps to Landing
@@ -75,4 +66,5 @@ Edges can be customized with variable fillet values, ranging from subtle curves 
 
 
 <VideoPlayer src="/video/stair/fillet_edge.mp4" />
+
 

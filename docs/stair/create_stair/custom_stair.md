@@ -2,6 +2,7 @@
 id: custom_stair
 title: Custom Stair
 sidebar_position: 4
+custom_edit_url: null
 
 ---
 
@@ -38,5 +39,8 @@ sidebar_position: 4
 
 
 
+## Fillet Edges
 
+
+## Landing Size
     

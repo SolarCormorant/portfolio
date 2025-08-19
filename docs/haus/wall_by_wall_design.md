@@ -62,8 +62,20 @@ If the connection involves a load-bearing wall, the algorithm adapts the block p
 ## Column Blocks
 
   The algorithm automatically detects the position of the column blocks based on the guide curve and adjusts their placement accordingly.
+<VideoPlayer src="/video/haus/column_0.mp4" />
+
 
 ## Filler Blocks
+
+- Filler blocks are automatically selected by the algorithm based on the surrounding block layout and the size of each gap.
+
+- There are two types of filler blocks: uncut and cut.
+
+  - Uncut blocks are predefined shapes extracted from designated gaps within standard blocks.
+
+  - Cut blocks are custom-sized pieces derived from cutting primary blocks to fit specific gaps.
+
+Users are encouraged to prioritize uncut blocks, as they are easier to prepare and require no additional measuring or adjustment. To support this, cut blocks are visually marked with a sphere, alerting the user to areas requiring further attention.
 
 ## Optimization of Palette Number
 

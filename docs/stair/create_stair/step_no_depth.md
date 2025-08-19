@@ -2,8 +2,12 @@
 id: step_no_depth
 title: Dynamic Step No and Depth
 sidebar_position: 3
+custom_edit_url: null
 
 ---
+
+import VideoPlayer from '@site/src/components/VideoPlayer';
+
 
 Step count is automatically calculated based on the floor height and predefined maximum and minimum riser heights. Step depth is dynamically adjusted within set limits.
 
@@ -13,9 +17,7 @@ In Type 2, depth adapts to the climb curve.
 
 In Type 3, depth responds to the stair’s overall geometry.
 
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
+<VideoPlayer src="/video/stair/step_depth.mp4" />
 
 <details>
   <summary>Why it's a big deal 🤓</summary>

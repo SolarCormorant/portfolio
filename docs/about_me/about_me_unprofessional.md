@@ -31,12 +31,15 @@ title: About Me in an Unprofessionaly Way and Without Any ChatGPT
 - Is man inherently good or evil? Man is inherently lazy and I believe in lowering the friction as much as possible and yet I don't believe in handouts.
 - I am a social person in small groups but I am not very keen on using social media including linkedin, promoting my work or any kind of interaction. I am a lurker when it comes to all kinds of social media. My latest post on instagram was in 2018. 
 - Money doesn't motivate me but lack of respect and money demotivates me
-- If a well-trained monkey can do that task, it is not worth doing so find a way to automate it
+- If a well-trained monkey can do that task, it is not worth doing so find a way to automate it.
+
+
 ## Personal Achievements
 
 - Owner of 80's japanese city pop playlist in spotify with 435 saves. 
 - % 0.3 listeners of the band ghost in 2023 and 0.2% in 2024 in spotify. 
 - World record holder in mike tysons punch out opponent glass joe. 
+
 ## My Calling or How I Learned to Stop Worrying and Love the Change
 
 - In my second year of university, I have read Adolf Loos’s _Ornament and Crime_ and I realized who is a "designer" and what personal qualities you need to have as a "designer" and I saw that i was not a aesthetics designer and I didn't had the qualities to be a aesthetics designer, so I embarked a mission to find my calling and what my design will base on. (Also my then girlfriend now wife had those qualities in person so it was easier to notice it)
