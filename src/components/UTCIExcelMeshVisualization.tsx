@@ -292,8 +292,8 @@ const UTCIExcelMeshVisualization = ({
     
     setIntensityData(intensity);
 
-    const minVal = Math.min(...intensity);
-    const maxVal = Math.max(...intensity);
+    const minVal = Math.min(0);
+    const maxVal = Math.max(1);
     const range = maxVal - minVal;
     
     console.log('=== RENDER ===');

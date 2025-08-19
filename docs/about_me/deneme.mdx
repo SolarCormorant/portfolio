@@ -1,8 +1,15 @@
-import UTCIExcelMeshVisualization from '@site/src/components/UTCIExcelMeshVisualization';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
-# Deneme Sayfası
+# UTCI Mesh
 
-<UTCIExcelMeshVisualization
-  excelFilePath="/utci_data.csv"
-  objFilePath="/mesh.obj"
-/>
+<BrowserOnly fallback={<div style={{height:400,display:'flex',alignItems:'center',justifyContent:'center'}}>Tarayıcıda yüklenecek…</div>}>
+  {() => {
+    const UTCIExcelMeshVisualization = require('@site/src/components/UTCIExcelMeshVisualization').default;
+    return (
+      <UTCIExcelMeshVisualization
+        excelFilePath="/utci_data.csv"
+        objFilePath="/mesh.obj"
+      />
+    );
+  }}
+</BrowserOnly>
