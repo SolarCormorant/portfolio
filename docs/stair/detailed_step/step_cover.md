@@ -14,7 +14,6 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 
 <VideoPlayer src="/video/stair/beam_properties.mp4" />
 
-
 ## Open Riser
 
 - Open risers are used with Plate and Muffin step types. Cover placement on the sides is determined automatically based on the presence of structural support, while the user can optionally enable covers on the front and back of each step.

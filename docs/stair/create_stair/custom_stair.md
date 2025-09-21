@@ -3,9 +3,9 @@ id: custom_stair
 title: Custom Stair
 sidebar_position: 4
 custom_edit_url: null
-
 ---
 
+import VideoPlayer from '@site/src/components/VideoPlayer';
 
 ## Custom Curves
 
@@ -13,34 +13,17 @@ custom_edit_url: null
 
 - This flexibility allows for the creation of unique stair shapes beyond the standard configurations, supporting more complex or project-specific design intentions.
 
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
-
+<VideoPlayer src="/video/stair/custom_curve.mp4" />
 
 
 ## Guide Curve
 
 - A guide curve can define the outer boundary of the staircase, enabling fully customized stair shapes while preserving full control through the UI.
 
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
-
+<VideoPlayer src="/video/stair/guide_curve.mp4" />
 
 
 ## Gallery Curve
 
 - Additional gallery supports can be added by simply drawing their projection lines.
 
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
-
-
-
-## Fillet Edges
-
-
-## Landing Size
-    

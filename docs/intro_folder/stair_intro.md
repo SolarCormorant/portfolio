@@ -5,6 +5,17 @@ custom_edit_url: null
 
 ---
 
+import VideoPlayer from '@site/src/components/VideoPlayer';
+
+<VideoPlayer src="/video/stair/intro.mp4" />
+
+
+
+- Room dimensions and floor height directly influence the stair configuration, ensuring a precise fit within varying architectural conditions.
+
+
+
+
 - The goal of the algorithm is to drastically reduce the time spent on design, allowing explore the design options faster, deliver a fully functional staircase to the customer within minutes.
 - It provides a user-friendly interface that can be used by anyone,  eliminating the barrier of entry and streamlining the workflow. 
 - The algorithm automates **80% of the work**, allowing designers to focus on the creative and project-specific 20%. However it is planned to cover all possible design options.
