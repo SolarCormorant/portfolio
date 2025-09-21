@@ -1,13 +1,19 @@
 ---
 id: data-management
 title: Data Management
+sidebar_position: 0
+custom_edit_url: null
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
 
+- There are more than 100 different inputs that might be used or not and connecting them one by one to Hops components would be impractical. Therefore, a custom data management system was developed to handle this complexity efficiently. Data from each expander is collected and serialized with the names all values are merged and then data is seperated for each Hops component and deserialized in hops, resulting only needed data is sent to each Hops component.
+
+
+
 ### Check New Data
 
-- In this workflow, a centralized JSON structure aggregates all user-defined inputs, ensuring a unified source of truth across the definition. While centralizing inputs was essential since parameters like _Beam B Width_ influence multiple downstream components (e.g., step borders)—it also introduced a challenge: unrelated input changes could trigger unnecessary recomputations across unrelated Hops components.
+- The central data collection system has also introduced a challenge: since as one JSON value has changed the system run again and unrelated input changes would trigger unnecessary recomputations across unrelated Hops components.
 - To address this, a custom locking mechanism was implemented. Before propagating input values to each Hops component, the system checks whether the relevant data has actually changed. If no changes are detected, the input is held, effectively bypassing redundant updates and preventing the recomputation of components unrelated to the modified parameter.
 - This approach significantly improves performance by reducing unnecessary data flow and recomputation within Grasshopper and Hops workflows.
 

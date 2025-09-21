@@ -1,6 +1,8 @@
 ---
 id: human_ui
 title: Human UI
+sidebar_position: 1
+custom_edit_url: null
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';

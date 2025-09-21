@@ -9,7 +9,13 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
       <UTCIExcelMeshVisualization
         excelFilePath="/utci_data.csv"
         objFilePath="/mesh.obj"
+          contextObjFilePath="/context_2.obj"    // <- ek context modeli
+  contextColor="#8e8e8e"               // (opsiyonel)
+  contextOpacity={0.2}                  // (opsiyonel)
+
       />
     );
   }}
 </BrowserOnly>
+
+

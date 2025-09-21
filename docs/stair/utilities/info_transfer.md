@@ -1,6 +1,8 @@
 ---
 id: info_transfer
 title: Information Transfer
+sidebar_position: 2
+custom_edit_url: null
 ---
 
 ## Document User Text
@@ -22,6 +24,6 @@ title: Information Transfer
 
 ## LINK Dashboard
 
-
+- The document text about the design and user text of each object is also categorized and visualized in a dashboard allowing to see total values (since the user text is not operable )and it is easier for user to see the changes in design rather than going through panels and looking for the value  
 
 

@@ -1,6 +1,9 @@
 ---
 id: security
 title: Security
+sidebar_position: 3
+custom_edit_url: null
+
 ---
 
 ## Internalize Hops

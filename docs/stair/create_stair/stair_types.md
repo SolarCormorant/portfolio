@@ -3,7 +3,6 @@ id: stair_types
 title: Stair Geometry
 sidebar_position: 0
 custom_edit_url: null
-
 ---
 
 import VideoPlayer from '@site/src/components/VideoPlayer';
@@ -24,7 +23,7 @@ Three stair configurations are available:
 - Type 2: Stairs driven by a climb curve, with steps arrayed along the curve.
 - Type 3: Stairs based on inner and outer borders, dividing the border into equal segments.
 
-<VideoPlayer src="/video/stair/stair_type.mp4" />
+<VideoPlayer src="/video/stair/stair_types.mp4" />
 
 
 ### Arm-Based Constraints
@@ -56,15 +55,12 @@ Some stair types are restricted based on the number of arms:
 ## Extend Stair
 Each end of the stair can be independently extended or shortened, allowing for asymmetrical arm lengths and more flexible layouts.
 
-<video controls autoplay muted loop playsInline width="100%">
-  <source src="/video/type_1.mp4" type="video/mp4" />
-</video>
-
+<VideoPlayer src="/video/stair/extend.mp4" />
 
 ## Edge Fillets
 Edges can be customized with variable fillet values, ranging from subtle curves to a full round, or kept sharp based on design intent.
 
 
-<VideoPlayer src="/video/stair/fillet_edge.mp4" />
+<VideoPlayer src="/video/stair/fillet.mp4" />
 
 

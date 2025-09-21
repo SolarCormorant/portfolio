@@ -1,18 +1,15 @@
 ---
 id: about_me_professional
 title: About Me
+custom_edit_url: null
+
 ---
-I am an architect with a strong focus on computational design, building science, and workflow automation. My approach blends architectural thinking with digital tools—developing not just designs, but systems that solve real-world problems.
+I'm a computational designer who discovered early in my career that my passion lies in creating tools rather than using them. This realization came during university when I shifted from aesthetic design to optimization and problem-solving through code.
 
-Early in my career, I realized that meaningful design should be based on logic and performance, not just aesthetics. This mindset led me to specialize in building data-driven workflows and custom tools—especially using platforms like Grasshopper and Python—to improve design quality, efficiency, and collaboration.
+My approach combines analytical thinking with practical implementation. At NJ Optimal, I developed a block-laying tool that optimized construction materials and automated billing. At Konu Merdiven, I created an algorithm that reduced custom stair design feedback from days to minutes while enabling direct CNC exports. My master's thesis on genetic algorithm-based light shelf optimization exemplifies how I merge technical knowledge with creative solutions.
 
-Some highlights:
+I excel at pattern recognition and workflow optimization, always questioning whether problems need solving or can be bypassed entirely. My background in Building Science and expertise in Grasshopper allows me to build systems that eliminate friction for end users. While I'm detail-oriented and thorough, I acknowledge that sudden changes require adaptation time.
 
-Automated Block/Brick Tool: Developed a system for optimized building modeling, cost estimation, and materials tracking.
+What drives me is the thrill of problem-solving and creating elegant systems that prevent future issues. I believe good design should have solid reasoning behind it - whether it's optimal daylight performance or structural efficiency - not just aesthetic appeal.
 
-Stair Algorithm: Created parametric algorithms for stair design, balancing code requirements with practical construction needs.
-
-I am detail-oriented, proactive about identifying risks, and committed to continuous improvement. I prefer to address root problems rather than surface symptoms, and I believe that automating routine work frees up time for meaningful innovation.
-
-My strengths include critical thinking, pattern recognition, and practical problem-solving. I am motivated by respect, good collaboration, and building things that last.
 
