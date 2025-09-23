@@ -10,7 +10,7 @@
 
 /* Docusaurus dark-mode (Oh My CV’deki .dark eşleniği) */
 html[data-theme='dark'] #resume-preview [data-scope="vue-smart-pages"][data-part="page"] {
-    background-color: hsl(213, 12%, 15%);
+    background-color: #1b1b1d;
     color: hsl(216, 12%, 84%);
 }
 
