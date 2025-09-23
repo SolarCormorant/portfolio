@@ -20,7 +20,7 @@ Step no is automatically calculated based on the floor height and predefined max
 <VideoPlayer src="/video/stair/stair_no.mp4" />
 
 <details>
-  <summary>How its made? 🤓</summary>
+  <summary>How its made? </summary>
   <img src="/svg/update_step_no_graph.svg" alt="Update Step No Graph" />
 </details>
 

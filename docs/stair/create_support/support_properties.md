@@ -3,7 +3,6 @@ id: support_properties
 title: Support Properties
 sidebar_position: 1
 custom_edit_url: null
-
 ---
 
 import VideoPlayer from '@site/src/components/VideoPlayer';
@@ -21,15 +20,6 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 <VideoPlayer src="/video/stair/support_stair_type.mp4" />
 
 
-- **Top Offset:**
-- **Bottom Offset:**
-- **Zigzag Front Offset:**
-- **Zigzag Back Offset:**
-- **Support Thickness:**
-
-<VideoPlayer src="/video/stair/beam_properties.mp4" />
-
-
 ## Rebuild Curve
 
 - Top and bottom curves can be redrawn with adjustable degrees and point counts, allowing for both flexible and rigid configurations.
@@ -44,3 +34,18 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 - This provides more control over the overall stair geometry and greater freedom to explore shape variations that best fit the design context.
 
 <VideoPlayer src="/video/stair/move_end_point.mp4" />
+
+## Custom Support Creation
+
+-  As with the stair geometry, all support systems are fully customizable. Once the "custom stair" option is selected, the defining curves can be edited or redrawn, giving the designer full control over the form.
+
+- This flexibility allows for unique, project-specific solutions rather than relying solely on the default algorithmic output.
+
+<VideoPlayer src="/video/stair/custom_beam.mp4" />
+
+
+<details>
+  <summary>How is it made?</summary>
+  <img src="/svg/create_beam.svg" alt="Create a Custom Support" />
+</details>
+

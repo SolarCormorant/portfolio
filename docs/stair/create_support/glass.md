@@ -36,10 +36,6 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 
 ## Glass Unfold
 - As soon as the glass panels are defined, a 2D unfolded drawing of each panel is generated dynamically, assisting in documentation and design evaluation.
-<VideoPlayer src="/video/stair/glass_feeling_designer.mp4" />
+<VideoPlayer src="/video/stair/glass_unfold.mp4" />
 
-<details>
-  <summary>How does it work?</summary>
-  <img src="/svg/create_beam.svg" alt="Create Custom Glass Panels" />
-  </details>
 
