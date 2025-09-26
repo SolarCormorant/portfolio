@@ -27,3 +27,6 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 
 - Additional gallery supports can be added by simply drawing their projection lines.
 
+
+<VideoPlayer src="/video/stair/custom_gallery_curve.mp4" />
+

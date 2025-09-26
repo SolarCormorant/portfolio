@@ -12,13 +12,11 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 ## Closed Riser
 - Closed risers are used with step types such as Shoreline, İnci, and Reversed Step. These include a specialized notch detail that simplifies installation.
 
-<VideoPlayer src="/video/stair/beam_properties.mp4" />
 
 ## Open Riser
 
 - Open risers are used with Plate and Muffin step types. Cover placement on the sides is determined automatically based on the presence of structural support, while the user can optionally enable covers on the front and back of each step.
 
-<VideoPlayer src="/video/stair/beam_properties.mp4" />
 
 ## Cover Unfold
 

@@ -13,7 +13,6 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 <VideoPlayer src="/video/stair/visualize_objects.mp4" />
 
 
-
 ## LINK Dashboard
 
 - The document text about the design and user text of each object is also categorized and visualized in a dashboard allowing to see total values (since the user text is not operable )and it is easier for user to see the changes in design rather than going through panels and looking for the value  
@@ -28,10 +27,18 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 
 <VideoPlayer src="/video/stair/user_text.mp4" />
 
+## Layout
 
+- Layout pages are created automatically based on the drawings are in the project. These pages can the following drawings:
 
+    - 3D View
+    - Table of Information
+    - Support Unfold
+    - Glass Unfold
+    - Step Cover Unfold
+    - Exploded Step
 
-
+<VideoPlayer src="/video/stair/layout.mp4" />
 
 ## Document User Text
 
@@ -39,4 +46,12 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 - This allows the data to be stored directly within the model, so it can be read and recalled in future sessions—enabling continuity across design iterations and simplifying version tracking.
 
 <ZoomableImage src="/img/document_user_text.png" alt="Document User Text" />
+
+
+## Export to CAM
+
+- Each steel component of the stair is unfolded into 2D, categorized by type, and labeled with its corresponding name directly engraved onto the part.
+- These drawings are exported as DWG files and prepared for nesting, streamlining the fabrication process and ensuring precise part identification during cutting and assembly.
+
+<VideoPlayer src="/video/stair/export.mp4" />
 

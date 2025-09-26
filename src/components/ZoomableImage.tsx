@@ -6,26 +6,37 @@ interface ZoomableImageProps {
   src: string;
   alt?: string;
   maxWidth?: string;
+  maxHeight?: string;
 }
 
 const ZoomableImage: React.FC<ZoomableImageProps> = ({
   src,
   alt = '',
   maxWidth = '800px',
+  maxHeight = '600px',
 }) => {
   return (
-    <Zoom>
-      <img
-        alt={alt}
-        src={src}
-        style={{
-        maxWidth: 'none',
-        width: '100%',
-        height: 'auto',
-        cursor: 'zoom-in',
-        }}
-      />
-    </Zoom>
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center',
+      width: '100%'
+    }}>
+      <Zoom>
+        <img
+          alt={alt}
+          src={src}
+          style={{
+            maxWidth: maxWidth,
+            maxHeight: maxHeight,
+            width: 'auto',
+            height: 'auto',
+            cursor: 'zoom-in',
+            objectFit: 'contain',
+          }}
+        />
+      </Zoom>
+    </div>
   );
 };
 
