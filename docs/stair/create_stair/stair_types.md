@@ -42,15 +42,16 @@ Some stair types are restricted based on the number of arms:
 <VideoPlayer src="/video/stair/arm_to_landing.mp4" />
 
 
+/*
 ### Type 2 & Type 3 Convert Steps to Landing
 
 - Individual steps can be converted into landings by selecting them directly in the user interface.
-- The total number of steps remains unchanged, but the remaining steps are resized to accommodate the new landing, maintaining the overall stair height while introducing rest areas where needed.
+- The total number of steps remains unchanged, but the remaining steps are resized to accommodate the new landing, maintaining the overall stair height while introducing landing areas where designed.
 
 <video controls autoplay muted loop playsInline width="100%">
   <source src="/video/type_1.mp4" type="video/mp4" />
 </video>
-
+*/
 
 ## Extend Stair
 Each end of the stair can be independently extended or shortened, allowing for asymmetrical arm lengths and more flexible layouts.
@@ -59,7 +60,6 @@ Each end of the stair can be independently extended or shortened, allowing for a
 
 ## Edge Fillets
 Edges can be customized with variable fillet values, ranging from subtle curves to a full round, or kept sharp based on design intent.
-
 
 <VideoPlayer src="/video/stair/fillet.mp4" />
 

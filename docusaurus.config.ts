@@ -132,16 +132,16 @@ const config: Config = {
           ],
         },
         {
-          title: 'Community',
+          title: 'Crème de la crème ',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Information Transfer',
+              to: 'docs/stair/utilities/info_transfer', // docs klasöründeki intro.md dosyasına
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
+              label: 'Dynamic Step No and Depth',
+              to: 'docs/stair/create_stair/step_no_depth.md', // docs klasöründeki intro.md dosyasına
+              },
             {
               label: 'X',
               href: 'https://x.com/docusaurus',
@@ -162,10 +162,11 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Built mostly with vibe-coding. Some videos are sped up for cinematic effect.`,
+
     },
     prism: {
-      theme: prismThemes.github,
+      theme: prismThemes.synthwave84,
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
