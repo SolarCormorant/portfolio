@@ -9,11 +9,6 @@ const config: Config = {
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.png',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
-
   // Set the production url of your site here
   url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -27,6 +22,11 @@ const config: Config = {
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
+
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  future: {
+    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -70,8 +70,16 @@ const config: Config = {
   ],
 
   themeConfig: {
+    // Dark mode ayarları
+    colorMode: {
+      defaultMode: 'dark',              // Varsayılan dark tema
+      disableSwitch: false,             // Tema değiştirme butonu aktif
+      respectPrefersColorScheme: false, // Tarayıcı tercihini yoksay
+    },
+    
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    
     navbar: {
       title: 'My Portfolio',
       logo: {
@@ -79,19 +87,17 @@ const config: Config = {
         src: 'img/favicon.png',
       },
       items: [
-                {
+        {
           type: 'docSidebar',
           sidebarId: 'about_me',
           position: 'left',
           label: 'About Me',
         },
-
         {
           type: 'docSidebar',
           sidebarId: 'staircase',
           position: 'left',
           label: 'Staircase Algorithm',
-          to: '/docs/intro_folder/stair_intro',
         },
         {
           type: 'docSidebar',
@@ -111,7 +117,6 @@ const config: Config = {
           position: 'left',
           label: 'Building Science',
         },
-        
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -119,6 +124,7 @@ const config: Config = {
         },
       ],
     },
+    
     footer: {
       style: 'dark',
       links: [
@@ -127,21 +133,21 @@ const config: Config = {
           items: [
             {
               label: 'About Me',
-              to: '/docs/thesis/thesis.mdx',
+              to: '/docs/thesis/thesis',
             },
           ],
         },
         {
-          title: 'Crème de la crème ',
+          title: 'Crème de la crème',
           items: [
             {
               label: 'Information Transfer',
-              to: 'docs/stair/utilities/info_transfer', // docs klasöründeki intro.md dosyasına
+              to: '/docs/stair/utilities/info_transfer',
             },
             {
               label: 'Dynamic Step No and Depth',
-              to: 'docs/stair/create_stair/step_no_depth.md', // docs klasöründeki intro.md dosyasına
-              },
+              to: '/docs/stair/create_stair/step_no_depth',
+            },
             {
               label: 'X',
               href: 'https://x.com/docusaurus',
@@ -163,8 +169,8 @@ const config: Config = {
         },
       ],
       copyright: `Built mostly with vibe-coding. Some videos are sped up for cinematic effect.`,
-
     },
+    
     prism: {
       theme: prismThemes.synthwave84,
       darkTheme: prismThemes.dracula,
