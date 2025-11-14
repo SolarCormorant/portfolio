@@ -129,41 +129,19 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'About Me',
-              to: '/docs/thesis/thesis',
-            },
-          ],
-        },
-        {
           title: 'Crème de la crème',
           items: [
             {
-              label: 'Information Transfer',
+              label: 'Stair Algorithm - Information Transfer',
               to: '/docs/stair/utilities/info_transfer',
             },
             {
-              label: 'Dynamic Step No and Depth',
+              label: 'Stair Algorithm - Dynamic Step No and Depth',
               to: '/docs/stair/create_stair/step_no_depth',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Haus Block Automated Design',
+              to: 'docs/haus/automated_design.md',
             },
           ],
         },
