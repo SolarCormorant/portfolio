@@ -36,6 +36,34 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    // ... diğer pluginler
+    function injectAnalytics() {
+      return {
+        name: 'inject-analytics',
+        injectHtmlTags() {
+          return {
+            postBodyTags: [
+              {
+                tagName: 'script',
+                innerHTML: `
+                  (function() {
+                    var script = document.createElement('script');
+                    script.defer = true;
+                    script.src = '/_vercel/insights/script.js';
+                    document.head.appendChild(script);
+                  })();
+                `,
+              },
+            ],
+          };
+        },
+      } as any; // Type assertion ile hatayı bypass ediyoruz
+    },
+  ],
+
+
+  
   presets: [
     [
       'classic',
