@@ -169,7 +169,7 @@ const config: Config = {
             },
             {
               label: 'Haus Block Automated Design',
-              to: 'docs/haus/automated_design.md',
+              to: '/docs/haus/automated_design',
             },
           ],
         },

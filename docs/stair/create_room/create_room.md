@@ -2,7 +2,6 @@
 id: create_room
 title: Creating Room
 custom_edit_url: null
-
 ---
 
 import VideoPlayer from '@site/src/components/VideoPlayer';
