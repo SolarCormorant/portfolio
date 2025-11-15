@@ -103,3 +103,39 @@
     background: rgba(255, 191, 0, 0.9);
     outline: 2px solid rgba(255, 191, 0, 0.9);
 }
+
+
+/* Tabs container */
+.view-tabs {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Tab button */
+.view-tab {
+    padding: 0.5rem 1rem;
+    font-family: Jost, sans-serif;
+    font-size: 1rem;
+    border-radius: 6px;
+    background-color: #2b2b2b;
+    /* dropdown arka planla uyumlu */
+    color: #ddd;
+    border: 1px solid #444;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Hover */
+.view-tab:hover {
+    background-color: #3a3a3a;
+}
+
+/* Active tab - dropdownların seçilmiş hali gibi */
+.view-tab.active {
+    background-color: #555;
+    border-color: #777;
+    color: white;
+    font-weight: 600;
+}

@@ -20,15 +20,14 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            to="/docs/stair/utilities/info_transfer">
+            Most Fancy Stuff
           </Link>
         </div>
       </div>
     </header>
   );
 }
-
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (

@@ -571,31 +571,32 @@ const Scatter3D: React.FC = () => {
                   }}
                 >
                   <ParallelPlot
-                    data={tableData}
-                    onFilterChange={(indices) => {
-                      setFilteredIndices((prev) => {
-                        const prevEmpty = !prev || prev.length === 0;
-                        const nextEmpty = !indices || indices.length === 0;
+  data={tableData}
+  onFilterChange={(indices) => {
+    setFilteredIndices((prev) => {
+      const prevEmpty = !prev || prev.length === 0;
+      const nextEmpty = !indices || indices.length === 0;
 
-                        if (prevEmpty && nextEmpty) {
-                          return prev;
-                        }
+      const same =
+        (prevEmpty && nextEmpty) ||
+        (prev &&
+          indices &&
+          prev.length === indices.length &&
+          prev.every((v, i) => v === indices[i]));
 
-                        if (
-                          prev &&
-                          indices &&
-                          prev.length === indices.length &&
-                          prev.every((v, i) => v === indices[i])
-                        ) {
-                          return prev;
-                        }
+      // filtre değişmediyse seçimi de elleme
+      if (same) {
+        return prev;
+      }
 
-                        return indices;
-                      });
+      // filtre gerçekten değiştiğinde hem filtreyi güncelle
+      // hem de satır seçimini sıfırla
+      setSelectedRowIndex(null);
+      return indices || null;
+    });
+  }}
+/>
 
-                      setSelectedRowIndex(null);
-                    }}
-                  />
                 </div>
 
                 <DataTable data={filteredData} selectedIndex={selectedRowIndex} />

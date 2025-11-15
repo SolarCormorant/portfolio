@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Solars Palace',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Something witty about my portfolio',
   favicon: 'img/favicon.png',
 
   // Set the production url of your site here
