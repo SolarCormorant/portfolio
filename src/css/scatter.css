@@ -13,7 +13,7 @@
     /* label above select */
     flex: 1 1 200px;
     /* responsive width */
-    min-width: 180px;
+    min-width: 120px;
 }
 
 .field label {
@@ -32,14 +32,74 @@
 }
 
 /* Extra comfy on narrow screens */
-@media (max-width: 640px) {
+@media (min-width: 900px) {
     .controls {
-        gap: 0.75rem;
+        flex-wrap: nowrap;
     }
+}
 
-    .field {
-        flex: 1 1 100%;
-    }
 
-    /* stack full-width */
+.data-table-container {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.data-table thead {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.data-table th {
+    font-weight: 500;
+}
+
+.data-table tr.selected-row {
+    background: rgba(0, 191, 255, 0.18);
+    outline: 1px solid rgba(255, 191, 0, 0.9);
+}
+
+
+.data-table-container {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.data-table tr.selected-row {
+    background: rgba(255, 191, 0, 0.9);
+    outline: 2px solid rgba(255, 191, 0, 0.9);
 }

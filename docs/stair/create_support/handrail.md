@@ -3,7 +3,6 @@ id: handrail
 title: Handrail Properties
 sidebar_position: 5
 custom_edit_url: null
-
 ---
 
 import VideoPlayer from '@site/src/components/VideoPlayer';
