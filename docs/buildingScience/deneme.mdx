@@ -7,9 +7,9 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
     const UTCIExcelMeshVisualization = require('@site/src/components/UTCIExcelMeshVisualization').default;
     return (
       <UTCIExcelMeshVisualization
-        excelFilePath="/utci_data.csv"
-        objFilePath="/mesh.obj"
-          contextObjFilePath="/context_2.obj"    // <- ek context modeli
+        excelFilePath="static/3D/rad_yeni.csv"
+        objFilePath="static/3D/rad_mesh_yeni.obj"
+          contextObjFilePath="/rad_mesh_yeni.obj"    // <- ek context modeli
   contextColor="#8e8e8e"               // (opsiyonel)
   contextOpacity={0.2}                  // (opsiyonel)
 
@@ -17,5 +17,4 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
     );
   }}
 </BrowserOnly>
-
 
