@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as Plotly from "plotly.js-dist";
 import { Range, getTrackBackground } from "react-range";
-import BrowserOnly from "@docusaurus/BrowserOnly";
 
 interface MeshData {
   vertices: number[][];
@@ -23,8 +22,8 @@ interface Props {
   contextObjFilePath?: string;
 }
 
-// renk paleti
-const baseColors = [
+// Daylight renk paleti
+const daylightColors = [
   "rgb(0,0,255)",
   "rgb(53,0,202)",
   "rgb(107,0,148)",
@@ -38,20 +37,37 @@ const baseColors = [
   "rgb(255,255,0)",
 ];
 
-const customColorscale: [number, string][] = baseColors.map((color, index) => [
-  index / (baseColors.length - 1),
-  color,
-]);
+const daylightColorscale: [number, string][] = daylightColors.map(
+  (color, index) => [index / (daylightColors.length - 1), color]
+);
 
-// legend araligi sabit
+// Solar radiation renk paleti
+const solarColors = [
+  "rgb(4,25,145)",
+  "rgb(7,48,224)",
+  "rgb(7,88,255)",
+  "rgb(1,232,255)",
+  "rgb(97,246,156)",
+  "rgb(166,249,86)",
+  "rgb(254,244,1)",
+  "rgb(255,121,0)",
+  "rgb(239,39,0)",
+  "rgb(138,17,0)",
+];
+
+const solarColorscale: [number, string][] = solarColors.map(
+  (color, index) => [index / (solarColors.length - 1), color]
+);
+
+// Legend araligi sabit
 const getLegendRange = (tab: "daylight" | "solar") => {
   if (tab === "daylight") {
     return { min: 0, max: 12 }; // saat
   }
-  return { min: 0, max: 12 }; // solar icin istersen degistirebilirsin
+  return { min: 0, max: 7 }; // kWh
 };
 
-// saat slideri
+// Saat slideri
 interface HourRangeSliderProps {
   hours: string[];
   start: number;
@@ -141,8 +157,8 @@ const HourRangeSlider: React.FC<HourRangeSliderProps> = ({
 };
 
 const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
-  daylightCsvFilePath = "/3D/rad_yeni.csv",
-  solarCsvFilePath = "/3D/rad_solar.csv",
+  daylightCsvFilePath = "/3D/3D_daylight.csv",
+  solarCsvFilePath = "/3D/3D_radiation.csv",
   objFilePath = "/3D/rad_mesh_yeni.obj",
   contextObjFilePath = "/3D/context.obj",
 }) => {
@@ -150,7 +166,9 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
 
   const [meshData, setMeshData] = useState<MeshData | null>(null);
   const [contextMesh, setContextMesh] = useState<MeshData | null>(null);
-  const [csvData, setCsvData] = useState<ParsedCSV | null>(null);
+
+  const [daylightCSV, setDaylightCSV] = useState<ParsedCSV | null>(null);
+  const [solarCSV, setSolarCSV] = useState<ParsedCSV | null>(null);
 
   const [activeTab, setActiveTab] = useState<"daylight" | "solar">(
     "daylight"
@@ -160,7 +178,11 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
   const [startIndex, setStartIndex] = useState<number>(0);
   const [endIndex, setEndIndex] = useState<number>(0);
 
-  const [intensity, setIntensity] = useState<number[]>([]);
+  const [daylightRaw, setDaylightRaw] = useState<number[] | null>(null);
+  const [solarRaw, setSolarRaw] = useState<number[] | null>(null);
+  const [daylightIntensity, setDaylightIntensity] = useState<number[]>([]);
+  const [solarIntensity, setSolarIntensity] = useState<number[]>([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -287,20 +309,16 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
     return { vertices, faces };
   };
 
-  // dosyalari yukle
+  // Dosyalari yukle
   useEffect(() => {
     const run = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        const currentCsvPath =
-          activeTab === "daylight"
-            ? daylightCsvFilePath
-            : solarCsvFilePath;
-
-        const [parsedCSV, objText, contextText] = await Promise.all([
-          loadCSV(currentCsvPath),
+        const [dayCSV, solCSV, objText, contextText] = await Promise.all([
+          loadCSV(daylightCsvFilePath).catch(() => null),
+          loadCSV(solarCsvFilePath).catch(() => null),
           loadOBJ(objFilePath),
           loadOBJ(contextObjFilePath).catch(() => ""),
         ]);
@@ -315,14 +333,28 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
           setContextMesh(null);
         }
 
-        setCsvData(parsedCSV);
+        if (dayCSV) {
+          setDaylightCSV(dayCSV);
+        }
+        if (solCSV) {
+          setSolarCSV(solCSV);
+        }
 
-        if (parsedCSV.dates.length > 0) {
-          const firstDate = parsedCSV.dates[0];
-          const hoursForDate = parsedCSV.dateToHours[firstDate] || [];
-          setSelectedDate(firstDate);
+        let initialDate = "";
+        let initialHours: string[] = [];
+
+        if (dayCSV && dayCSV.dates.length > 0) {
+          initialDate = dayCSV.dates[0];
+          initialHours = dayCSV.dateToHours[initialDate] || [];
+        } else if (solCSV && solCSV.dates.length > 0) {
+          initialDate = solCSV.dates[0];
+          initialHours = solCSV.dateToHours[initialDate] || [];
+        }
+
+        if (initialDate) {
+          setSelectedDate(initialDate);
           setStartIndex(0);
-          setEndIndex(Math.max(0, hoursForDate.length - 1));
+          setEndIndex(Math.max(0, initialHours.length - 1));
         }
       } catch (e: any) {
         console.error(e);
@@ -333,81 +365,92 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
     };
 
     run();
-  }, [
-    activeTab,
-    daylightCsvFilePath,
-    solarCsvFilePath,
-    objFilePath,
-    contextObjFilePath,
-  ]);
+  }, [daylightCsvFilePath, solarCsvFilePath, objFilePath, contextObjFilePath]);
 
-  // intensite hesapla
+  // Daylight ve solar icin intensite hesapla
   useEffect(() => {
-    if (!csvData || !meshData || !selectedDate) return;
-
-    const hours = csvData.dateToHours[selectedDate];
-    if (!hours || hours.length === 0) return;
-
-    const safeStart = Math.max(0, Math.min(startIndex, hours.length - 1));
-    const safeEnd = Math.max(safeStart, Math.min(endIndex, hours.length - 1));
-
-    const columnIndices: number[] = [];
-    for (let idx = safeStart; idx <= safeEnd; idx++) {
-      const hour = hours[idx];
-      const colIndex = csvData.dateTimeMap[selectedDate][hour];
-      if (colIndex !== undefined) {
-        columnIndices.push(colIndex);
-      }
-    }
-
-    if (columnIndices.length === 0) return;
-
-    const summedValues: number[] = [];
-
-    for (const row of csvData.dataRows) {
-      let sum = 0;
-      for (const col of columnIndices) {
-        sum += row[col] ?? 0;
-      }
-      summedValues.push(sum);
-    }
+    if (!meshData || !selectedDate) return;
+    if (!daylightCSV && !solarCSV) return;
 
     const faceCount = meshData.faces.length;
-    const truncated =
-      summedValues.length >= faceCount
-        ? summedValues.slice(0, faceCount)
-        : (() => {
-            const repeated: number[] = [];
-            for (let i = 0; i < faceCount; i++) {
-              repeated.push(summedValues[i % summedValues.length]);
-            }
-            return repeated;
-          })();
 
-    const minVal = Math.min(...truncated);
-    const maxVal = Math.max(...truncated);
-    const levels = baseColors.length;
+    const computeForCSV = (
+      csv: ParsedCSV | null,
+      kind: "daylight" | "solar"
+    ): { raw: number[]; discrete: number[] } | null => {
+      if (!csv) return null;
 
-    const discreteValues =
-      maxVal === minVal
-        ? truncated.map(() => 0)
-        : truncated.map((v) => {
-            const ratio = (v - minVal) / (maxVal - minVal);
-            const level = Math.floor(ratio * (levels - 1));
-            return level;
-          });
+      const levels =
+        kind === "daylight" ? daylightColors.length : solarColors.length;
 
-    setIntensity(discreteValues);
-  }, [csvData, meshData, selectedDate, startIndex, endIndex]);
+      const hours = csv.dateToHours[selectedDate];
+      if (!hours || hours.length === 0) return null;
 
-  // plot
+      const maxIdx = hours.length - 1;
+      const localStart = Math.max(0, Math.min(startIndex, maxIdx));
+      const localEnd = Math.max(localStart, Math.min(endIndex, maxIdx));
+
+      const columnIndices: number[] = [];
+      for (let idx = localStart; idx <= localEnd; idx++) {
+        const hour = hours[idx];
+        const colIndex = csv.dateTimeMap[selectedDate][hour];
+        if (colIndex !== undefined) {
+          columnIndices.push(colIndex);
+        }
+      }
+      if (columnIndices.length === 0) return null;
+
+      const summed: number[] = [];
+      for (const row of csv.dataRows) {
+        let sum = 0;
+        for (const col of columnIndices) {
+          sum += row[col] ?? 0;
+        }
+        summed.push(sum);
+      }
+
+      let faceValues: number[];
+      if (summed.length >= faceCount) {
+        faceValues = summed.slice(0, faceCount);
+      } else {
+        faceValues = [];
+        for (let i = 0; i < faceCount; i++) {
+          faceValues.push(summed[i % summed.length]);
+        }
+      }
+
+      const range = getLegendRange(kind);
+
+      const discrete = faceValues.map((v) => {
+        const clamped = Math.max(range.min, Math.min(range.max, v));
+        const ratio =
+          range.max === range.min
+            ? 0
+            : (clamped - range.min) / (range.max - range.min);
+        const level = Math.floor(ratio * (levels - 1));
+        return level;
+      });
+
+      return { raw: faceValues, discrete };
+    };
+
+    const dl = computeForCSV(daylightCSV, "daylight");
+    const sr = computeForCSV(solarCSV, "solar");
+
+    setDaylightRaw(dl ? dl.raw : null);
+    setSolarRaw(sr ? sr.raw : null);
+    setDaylightIntensity(dl ? dl.discrete : []);
+    setSolarIntensity(sr ? sr.discrete : []);
+  }, [daylightCSV, solarCSV, meshData, selectedDate, startIndex, endIndex]);
+
+  // Plot
   useEffect(() => {
+    const intensity =
+      activeTab === "daylight" ? daylightIntensity : solarIntensity;
+
     if (!plotRef.current || !meshData || intensity.length === 0 || loading)
       return;
 
-    const traces: Partial<Plotly.Data>[] = [];
-
-    // ana mesh
     const { vertices, faces } = meshData;
 
     const xs = vertices.map((v) => v[0]);
@@ -418,7 +461,11 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
     const js = faces.map((f) => f[1]);
     const ks = faces.map((f) => f[2]);
 
-    const levels = baseColors.length;
+    const levels =
+      activeTab === "daylight" ? daylightColors.length : solarColors.length;
+    const colorscale =
+      activeTab === "daylight" ? daylightColorscale : solarColorscale;
+
     const cmin = 0;
     const cmax = levels - 1;
 
@@ -431,6 +478,21 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
       return val.toFixed(0);
     });
 
+    const hoverText =
+      vertices.length > 0
+        ? intensity.map((_, idx) => {
+            const dlVal =
+              daylightRaw && daylightRaw[idx] !== undefined
+                ? `${daylightRaw[idx].toFixed(2)} h`
+                : "N/A";
+            const srVal =
+              solarRaw && solarRaw[idx] !== undefined
+                ? `${solarRaw[idx].toFixed(2)} kWh`
+                : "N/A";
+            return `Daylight hours ${dlVal}<br>Solar radiation ${srVal}`;
+          })
+        : [];
+
     const mainTrace: Partial<Plotly.Data> = {
       type: "mesh3d",
       x: xs,
@@ -441,15 +503,19 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
       k: ks,
       intensity,
       intensitymode: "cell",
-      colorscale: customColorscale,
+      colorscale,
       cmin,
       cmax,
       showscale: true,
       flatshading: false,
       lighting: { ambient: 0.7, diffuse: 0.8, specular: 0.2 },
+      text: hoverText,
+      hoverinfo: "text",
       colorbar: {
         title:
-          activeTab === "daylight" ? "Daylight hours" : "Solar radiation",
+          activeTab === "daylight"
+            ? "Daylight hours"
+            : "Solar radiation (kWh)",
         len: 0.5,
         thickness: 14,
         tickmode: "array",
@@ -464,9 +530,9 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
       },
     };
 
-    traces.push(mainTrace);
+    const traces: Partial<Plotly.Data>[] = [mainTrace];
 
-    // context mesh sabit renk
+    // Context mesh
     if (contextMesh) {
       const cx = contextMesh.vertices.map((v) => v[0]);
       const cy = contextMesh.vertices.map((v) => v[1]);
@@ -488,6 +554,7 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
         opacity: 1,
         flatshading: true,
         showscale: false,
+        hoverinfo: "skip",
       };
 
       traces.push(contextTrace);
@@ -546,7 +613,16 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
     } else {
       Plotly.newPlot(plotRef.current, traces as any, layout, config);
     }
-  }, [meshData, contextMesh, intensity, loading, activeTab]);
+  }, [
+    meshData,
+    contextMesh,
+    daylightIntensity,
+    solarIntensity,
+    daylightRaw,
+    solarRaw,
+    loading,
+    activeTab,
+  ]);
 
   if (loading) {
     return <div>Veriler yukleniyor</div>;
@@ -556,19 +632,22 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
     return <div>Hata olustu {error}</div>;
   }
 
-  if (!csvData || !meshData) {
+  if (!meshData || (!daylightCSV && !solarCSV)) {
     return <div>Veri bulunamadi</div>;
   }
 
-  const hoursForSelected = csvData.dateToHours[selectedDate] || [];
+  const baseCSV = daylightCSV || solarCSV;
+  const hoursForSelected =
+    baseCSV?.dateToHours[selectedDate] || [];
 
+  const maxHourIndex = Math.max(0, hoursForSelected.length - 1);
   const safeStart = Math.max(
     0,
-    Math.min(startIndex, Math.max(0, hoursForSelected.length - 1))
+    Math.min(startIndex, maxHourIndex)
   );
   const safeEnd = Math.max(
     safeStart,
-    Math.min(endIndex, Math.max(0, hoursForSelected.length - 1))
+    Math.min(endIndex, maxHourIndex)
   );
 
   return (
@@ -615,7 +694,7 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
         </button>
       </div>
 
-      {/* tarih ve slider */}
+      {/* Tarih ve slider */}
       <div
         style={{
           display: "flex",
@@ -629,7 +708,14 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
           onChange={(e) => {
             const newDate = e.target.value;
             setSelectedDate(newDate);
-            const hours = csvData.dateToHours[newDate] || [];
+
+            const hours =
+              (daylightCSV &&
+                daylightCSV.dateToHours[newDate]) ||
+              (solarCSV &&
+                solarCSV.dateToHours[newDate]) ||
+              [];
+
             setStartIndex(0);
             setEndIndex(Math.max(0, hours.length - 1));
           }}
@@ -641,7 +727,7 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
             padding: "4px 8px",
           }}
         >
-          {csvData.dates.map((date) => (
+          {(baseCSV?.dates || []).map((date) => (
             <option key={date} value={date}>
               {date}
             </option>
