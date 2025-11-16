@@ -1,12 +1,17 @@
----
-id: environmental
-title: Environmental Analysis
-slug: /simple-mesh
----
+import React from "react";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
-import SimpleMeshCSVWithDateHourRange from "@site/src/components/3D/SimpleMeshCSVWithDateHourRange";
-
-# Environmental Analysis
-
-
-<SimpleMeshCSVWithDateHourRange />
+export default function SimpleMeshCSVPage() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <BrowserOnly fallback={<div>Loading mesh</div>}>
+        {() => {
+          const SimpleMeshCSVWithDateHourRange =
+            require("@site/src/components/3D/SimpleMeshCSVWithDateHourRange")
+              .default;
+          return <SimpleMeshCSVWithDateHourRange />;
+        }}
+      </BrowserOnly>
+    </div>
+  );
+}

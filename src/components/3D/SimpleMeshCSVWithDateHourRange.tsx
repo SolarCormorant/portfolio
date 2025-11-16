@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as Plotly from "plotly.js-dist";
 import { Range, getTrackBackground } from "react-range";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 interface MeshData {
   vertices: number[][];
