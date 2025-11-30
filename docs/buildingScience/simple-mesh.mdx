@@ -1,9 +1,9 @@
 ---
 id: outdoor_analysis
 title: Solar Analysis
+sidebar_position: 1
 custom_edit_url: null
 ---
-
 
 
 import React from "react";
@@ -14,12 +14,24 @@ export default function SimpleMeshCSVPage() {
     <div style={{ padding: "20px" }}>
       <BrowserOnly fallback={<div>Loading mesh</div>}>
         {() => {
-          const SimpleMeshCSVWithDateHourRange =
-            require("@site/src/components/3D/SimpleMeshCSVWithDateHourRange")
+          const SolarAnalysisMesh =
+            require("@site/src/components/3D/solar_analysis_mesh")
               .default;
-          return <SimpleMeshCSVWithDateHourRange />;
+          return <SolarAnalysisMesh />;
         }}
       </BrowserOnly>
     </div>
   );
 }
+
+
+Solar radiation plays a critical role in building design, directly influencing a structure’s energy efficiency, thermal comfort, and sustainability. It is a key factor in decisions such as window placement, solar panel orientation, and shading system design.
+
+Understanding the seasonal variation of solar radiation is essential for balancing heating and cooling demands throughout the year.
+
+In summer, high solar exposure can lead to overheating in interior spaces. Well-designed and strategically placed shading systems help mitigate this effect by controlling indoor temperatures.
+
+In winter, making use of available solar radiation supports passive heating, reducing the need for mechanical systems and lowering overall energy consumption.
+
+For this reason, analyzing the directional and temporal distribution of solar radiation is a vital step in optimizing building performance during the design process.
+

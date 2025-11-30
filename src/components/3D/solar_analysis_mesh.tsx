@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as Plotly from "plotly.js-dist";
 import { Range, getTrackBackground } from "react-range";
+import "../../css/scatter.css";
 
 interface MeshData {
   vertices: number[][];
@@ -158,8 +159,8 @@ const HourRangeSlider: React.FC<HourRangeSliderProps> = ({
 
 const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
   daylightCsvFilePath = "/3D/3D_daylight.csv",
-  solarCsvFilePath = "/3D/3D_radiation.csv",
-  objFilePath = "/3D/rad_mesh_yeni.obj",
+  solarCsvFilePath = "/3D/3D_radiation_2.csv",
+  objFilePath = "/3D/rad_mesh_yeni_2.obj",
   contextObjFilePath = "/3D/context.obj",
 }) => {
   const plotRef = useRef<HTMLDivElement | null>(null);
@@ -241,9 +242,28 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
       dateToHoursSet[date].add(hour);
     });
 
-    const dates = Object.keys(dateTimeMap).sort((a, b) =>
-      a.localeCompare(b)
-    );
+    // Sort dates: equinoxes and solstices in chronological order
+    const seasonalOrder = [
+      "21 Mar", // March 21 - Spring Equinox
+      "21 Jun", // June 21 - Summer Solstice
+      "21 Sep", // September 21 - Autumn Equinox
+      "21 Dec", // December 21 - Winter Solstice
+    ];
+
+    const dates = Object.keys(dateTimeMap).sort((a, b) => {
+      const indexA = seasonalOrder.indexOf(a);
+      const indexB = seasonalOrder.indexOf(b);
+
+      // If both dates are in seasonalOrder, sort by their position
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      // If only one is in seasonalOrder, prioritize it
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      // Otherwise, fall back to alphabetical
+      return a.localeCompare(b);
+    });
 
     const dateToHours: Record<string, string[]> = {};
     for (const date of dates) {
@@ -255,6 +275,8 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
       });
       dateToHours[date] = hourList;
     }
+
+    console.log("📅 Dates sorted for dropdown:", dates);
 
     return {
       headers,
@@ -512,10 +534,15 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
       text: hoverText,
       hoverinfo: "text",
       colorbar: {
-        title:
-          activeTab === "daylight"
-            ? "Daylight hours"
-            : "Solar radiation (kWh)",
+        title: {
+          text: activeTab === "daylight"
+            ? "Daylight (hours)"
+            : "Radiation (kWh)",
+          font: {
+            color: "#f5f5f5",
+            size: 12,
+          },
+        },
         len: 0.5,
         thickness: 14,
         tickmode: "array",
@@ -589,7 +616,7 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
     const plotElement: any = plotRef.current;
     const existingCamera =
       plotElement?.layout?.scene?.camera || {
-        eye: { x: 1.5, y: 1.5, z: 1.5 },
+        eye: { x: 0, y: -2, z: 1.5 }, // Güneyden bakış (negatif Y)
       };
 
     const layout: Partial<Plotly.Layout> = {
@@ -695,44 +722,34 @@ const SimpleMeshCSVWithDateHourRange: React.FC<Props> = ({
       </div>
 
       {/* Tarih ve slider */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "16px",
-          marginBottom: "12px",
-        }}
-      >
-        <select
-          value={selectedDate}
-          onChange={(e) => {
-            const newDate = e.target.value;
-            setSelectedDate(newDate);
+      <div className="controls">
+        <div className="field">
+          <label>Date</label>
+          <select
+            className="select"
+            value={selectedDate}
+            onChange={(e) => {
+              const newDate = e.target.value;
+              setSelectedDate(newDate);
 
-            const hours =
-              (daylightCSV &&
-                daylightCSV.dateToHours[newDate]) ||
-              (solarCSV &&
-                solarCSV.dateToHours[newDate]) ||
-              [];
+              const hours =
+                (daylightCSV &&
+                  daylightCSV.dateToHours[newDate]) ||
+                (solarCSV &&
+                  solarCSV.dateToHours[newDate]) ||
+                [];
 
-            setStartIndex(0);
-            setEndIndex(Math.max(0, hours.length - 1));
-          }}
-          style={{
-            backgroundColor: "#333333",
-            color: "#f5f5f5",
-            borderRadius: "4px",
-            border: "1px solid #555555",
-            padding: "4px 8px",
-          }}
-        >
-          {(baseCSV?.dates || []).map((date) => (
-            <option key={date} value={date}>
-              {date}
-            </option>
-          ))}
-        </select>
+              setStartIndex(0);
+              setEndIndex(Math.max(0, hours.length - 1));
+            }}
+          >
+            {(baseCSV?.dates || []).map((date) => (
+              <option key={date} value={date}>
+                {date}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div style={{ flex: 1 }}>
           {hoursForSelected.length > 0 && (

@@ -24,11 +24,11 @@
 /* Make selects easy to tap on mobile */
 .select {
     width: 100%;
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.95rem;
     /* prevents iOS zoom on focus */
     line-height: 1.2;
-    min-height: 40px;
+    min-height: 32px;
 }
 
 /* Extra comfy on narrow screens */

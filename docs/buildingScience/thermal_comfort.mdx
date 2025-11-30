@@ -1,0 +1,77 @@
+---
+id: thermal_comfort
+title: Outdoor Thermal Comfort Analysis
+custom_edit_url: null
+---
+
+import React from "react";
+import BrowserOnly from "@docusaurus/BrowserOnly";
+
+## Outdoor Thermal Comfort
+
+The Universal Thermal Climate Index (UTCI) is a thermal comfort metric that evaluates perceived temperature by incorporating multiple environmental factors, including air temperature, humidity, wind speed, and solar radiation. It is widely used to assess thermal stress in outdoor environments, particularly in urban settings.
+
+### UTCI Classification
+
+| UTCI Range | Category | Description |
+|------------|----------|-------------|
+| ≥ 46°C | +3 | Very Strong Heat Stress |
+| 38°C – 45.9°C | +2 | Strong Heat Stress |
+| 32°C – 37.9°C | +1 | Moderate Heat Stress |
+| 9°C – 31.9°C | 0 | Thermal Comfort / No Thermal Stress |
+| 0°C – 8.9°C | -1 | Slight Cold Stress |
+| -13°C – -0.1°C | -2 | Moderate Cold Stress |
+| -27°C – -13.1°C | -3 | Strong Cold Stress |
+
+## Temporal Analysis: Condition Heatmap
+
+The heatmap illustrates how thermal comfort conditions and UTCI values vary throughout the year, highlighting the influence of outdoor environmental factors such as solar radiation and wind on perceived comfort.
+
+This visualization enables a comprehensive analysis of how these variables impact outdoor thermal comfort across seasons, supporting climate-responsive design strategies and microclimate optimization.
+
+export function ConditionHeatmapViz() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <BrowserOnly fallback={<div>Loading heatmap</div>}>
+        {() => {
+          const ConditionHeatmap =
+            require("@site/src/components/3D/ConditionHeatmap").default;
+          return <ConditionHeatmap />;
+        }}
+      </BrowserOnly>
+    </div>
+  );
+}
+
+<ConditionHeatmapViz />
+
+## Spatial Analysis: 3D Thermal Comfort Map
+
+The 3D visualization below presents the spatial distribution of thermal comfort conditions across the site.
+
+This mesh-based representation allows users to explore how UTCI values and comfort categories vary across different locations during typical seasonal weeks, revealing localized hotspots, shaded zones, and areas of thermal stress.
+
+export function ThermalComfortMeshViz() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <BrowserOnly fallback={<div>Loading 3D mesh</div>}>
+        {() => {
+          const ThermalComfortMesh =
+            require("@site/src/components/3D/outdoor_comfort/ThermalComfortMesh").default;
+          return <ThermalComfortMesh />;
+        }}
+      </BrowserOnly>
+    </div>
+  );
+}
+
+<ThermalComfortMeshViz />
+
+### Interaction Guide
+
+Use the controls to:
+- Switch between UTCI and comfort category views
+- Select different typical weeks (Winter, Spring, Summer, Autumn)
+- Adjust the day range within each week
+- Filter by specific hours of the day
+- Rotate and zoom the 3D model to explore spatial patterns

@@ -1,0 +1,29 @@
+---
+id: daylight
+title: Daylight Analysis
+custom_edit_url: null
+---
+
+import React from "react";
+import BrowserOnly from "@docusaurus/BrowserOnly";
+
+export default function SimpleMeshCSVPage() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <BrowserOnly fallback={<div>Loading mesh</div>}>
+        {() => {
+          const MeshUDIWithLines = require("@site/src/components/3D/daylight/mesh_UDI_with_lines")
+            .default;
+          return (
+            <MeshUDIWithLines
+              moduleObjFilePath="/3D/daylight/module_2_1.obj"
+              contextObjFilePath="/3D/daylight/module_2_1_context.obj"
+              linesObjFilePath="/3D/daylight/lines.obj"
+              moduleObjectiveCsvFilePath="/3D/daylight/master.csv"
+            />
+          );
+        }}
+      </BrowserOnly>
+    </div>
+  );
+}

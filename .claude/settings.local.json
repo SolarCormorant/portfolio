@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npm run start:*)",
+      "Bash(ls \"c:\\solarCormorant\\Portfolio\\website\\portfolio\\static\\3D\\daylight\"\" | grep -E \"module.*.obj \")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
