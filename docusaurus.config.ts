@@ -4,6 +4,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Environment variable to control visibility
+const isPublicBuild = process.env.PUBLIC_BUILD === 'true';
+
 const config: Config = {
   title: 'Solars Palace',
   tagline: 'Something witty about my portfolio',
