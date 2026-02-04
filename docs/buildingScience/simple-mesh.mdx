@@ -9,10 +9,20 @@ custom_edit_url: null
 import React from "react";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 
-export default function SimpleMeshCSVPage() {
+## Daylight Hours
+Daylight Hours represent the periods throughout the year when a surface receives usable daylight. This analysis is used to assess daylight availability and overall daylight performance within a space.
+
+## Solar Radiation Analysis
+
+Solar radiation is a key driver of building performance, influencing energy use, thermal comfort, and sustainability. It informs design decisions such as glazing placement, shading strategy, and photovoltaic orientation.
+
+Understanding seasonal variation is essential for balancing heating and cooling loads. In summer, high solar exposure can increase the risk of overheating, so well designed shading helps limit heat gains and improve comfort. In winter, capturing available solar radiation supports passive heating, reducing reliance on mechanical systems and lowering energy consumption.
+
+
+export function SolarAnalysisMeshViz() {
   return (
     <div style={{ padding: "20px" }}>
-      <BrowserOnly fallback={<div>Loading mesh</div>}>
+      <BrowserOnly fallback={<div>Loading 3D mesh</div>}>
         {() => {
           const SolarAnalysisMesh =
             require("@site/src/components/3D/solar_analysis_mesh")
@@ -24,14 +34,5 @@ export default function SimpleMeshCSVPage() {
   );
 }
 
-
-Solar radiation plays a critical role in building design, directly influencing a structure’s energy efficiency, thermal comfort, and sustainability. It is a key factor in decisions such as window placement, solar panel orientation, and shading system design.
-
-Understanding the seasonal variation of solar radiation is essential for balancing heating and cooling demands throughout the year.
-
-In summer, high solar exposure can lead to overheating in interior spaces. Well-designed and strategically placed shading systems help mitigate this effect by controlling indoor temperatures.
-
-In winter, making use of available solar radiation supports passive heating, reducing the need for mechanical systems and lowering overall energy consumption.
-
-For this reason, analyzing the directional and temporal distribution of solar radiation is a vital step in optimizing building performance during the design process.
+<SolarAnalysisMeshViz />
 

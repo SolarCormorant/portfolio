@@ -7,10 +7,24 @@ custom_edit_url: null
 import React from "react";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 
-export default function SimpleMeshCSVPage() {
+## Climate Based Daylight Modeling
+
+Useful Daylight Illuminance (UDI) evaluates the quality of daylight in an interior space by measuring how often illuminance levels fall within a useful range throughout the year. Rather than simply indicating the presence of daylight, UDI focuses on whether daylight levels are adequate without being excessive.
+
+Low illuminance values indicate insufficient daylight, increasing the need for artificial lighting. Excessively high values suggest the risk of glare and visual discomfort. UDI helps identify the balance between these conditions by highlighting the portion of time when daylight contributes positively to visual comfort and energy efficiency.
+
+By analyzing the spatial and temporal distribution of UDI, designers can assess daylight usability, refine façade and glazing strategies, and improve overall visual comfort within a space.
+
+## Spatial Analysis: 3D Daylight Distribution Map
+
+The 3D visualization below presents the spatial distribution of useful daylight illuminance across the interior space.
+
+This mesh-based representation allows users to explore how UDI values vary across different locations, revealing areas with optimal daylight, under-lit zones, and areas at risk of excessive illuminance or glare.
+
+export function DaylightMeshViz() {
   return (
     <div style={{ padding: "20px" }}>
-      <BrowserOnly fallback={<div>Loading mesh</div>}>
+      <BrowserOnly fallback={<div>Loading 3D mesh</div>}>
         {() => {
           const MeshUDIWithLines = require("@site/src/components/3D/daylight/mesh_UDI_with_lines")
             .default;
@@ -27,3 +41,5 @@ export default function SimpleMeshCSVPage() {
     </div>
   );
 }
+
+<DaylightMeshViz />
