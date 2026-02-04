@@ -9,6 +9,8 @@ export default function EmbedSolarAnalysis() {
         height: "100vh",
         backgroundColor: "#1a1a1a",
         overflow: "hidden",
+        padding: "40px 60px",
+        boxSizing: "border-box",
       }}
     >
       <BrowserOnly fallback={<div>Loading...</div>}>
